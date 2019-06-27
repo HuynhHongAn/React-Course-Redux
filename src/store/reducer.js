@@ -6,7 +6,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'INCREMENT':
-      const newState = Object.assign({}.action);
+      const newState = Object.assign({}, state);
       newState.counter = state.counter + 1;
       return newState;
     case 'DECREMENT':
@@ -28,6 +28,20 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         results: state.results.concat({id: new Date(), value: state.counter})
+      }
+    case 'DELETE_RESULT':
+      //1)
+      // const id = 2;
+      // const newArray = [...state.results];
+      // newArray.splice(id, 1);
+
+      //2)
+      const updatedArray = state.results.filter(result => {
+        return result.id !== action.id;
+      })
+      return {
+        ...state,
+        results: updatedArray
       }
   }
 

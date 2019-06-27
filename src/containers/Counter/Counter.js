@@ -39,7 +39,7 @@ class Counter extends Component {
                 <ul>
                     {this.props.storeResults.map(strResult => (
                         <li 
-                            onClick={this.props.onDeleteResult}
+                            onClick={() => this.props.onDeleteResult(strResult.id)}
                             key={strResult.id}>{strResult.value}</li>
                     ))}
 
@@ -64,7 +64,7 @@ const mapDispatchToProps = dispatch => {
         onAddCounter: (amount) => dispatch({ amount: amount, type: 'ADD' }),
         onSubtractCounter: (amount) => dispatch({ amount: amount, type: 'SUBTRACT' }),
         onStoreResult: () => dispatch({ type: 'STORE_RESULT' }),
-        onDeleteResult: () => dispatch({ type: 'DELETE_RESULT' })
+        onDeleteResult: (id) => dispatch({ type: 'DELETE_RESULT', id: id })
     }
 }
 
